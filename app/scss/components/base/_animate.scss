@@ -1,0 +1,20 @@
+[data-animate] {
+   opacity: 0;
+   transition: opacity 5s ease 0s, transform 5s ease 0s;
+   &.animated {
+      opacity: 1;
+      transform: translate(0, 0);
+   }
+}
+[data-animate-top] {
+   transform: translateY(-50px);
+}
+[data-animate-bottom] {
+   transform: translateY(50px);
+}
+[data-animate-left] {
+   transform: translateX(-50px);
+}
+[data-animate-right] {
+   transform: translateX(50px);
+}

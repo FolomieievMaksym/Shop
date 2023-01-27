@@ -1,0 +1,8 @@
+body.home {
+   .hero {
+      &__container {
+         padding-top: 30px;
+         @extend %container;
+      }
+   }
+}

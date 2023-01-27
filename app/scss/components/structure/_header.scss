@@ -1,0 +1,377 @@
+.header {
+   position: fixed;
+   width: 100%;
+   opacity: 1;
+   transition: opacity 0.3s ease 0s;
+   &:hover {
+      opacity: 1 !important;
+   }
+   &:before {
+      // Накрывает менюшки с position: fixed
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: $light; // todo Изменить на нужный цвет подложки
+      z-index: 1;
+   }
+   &__container {
+      @extend %container;
+   }
+   &__body {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between; // todo Позиционируем элементы по оси Х
+      column-gap: 20px;
+      @media (min-width: 769px) {
+         position: relative;
+         z-index: 3;
+      }
+   }
+   &__logo {
+      z-index: 2;
+      @include fl(30);
+      transition: all 0.3s ease;
+      &:hover {
+         transform: scale(1.1);
+      }
+   }
+   &__bottom {
+      position: relative;
+      z-index: 2;
+      background-color: red;
+      text-align: center;
+      font-size: 2em;
+   }
+}
+
+.header-menu {
+   @media (max-width: 768px) {
+      position: fixed;
+      top: -100vh;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0);
+      backdrop-filter: blur(0px);
+      transition: top 0.8s ease 0.3s, background-color 0.3s ease 0s, backdrop-filter 0.3s ease 0s;
+      &.active {
+         top: 0;
+         transition: top 0.8s ease 0s, background-color 0.5s ease 0.8s, backdrop-filter 0.5s ease 0.8s;
+         background-color: rgba(0, 0, 0, 0.8);
+         backdrop-filter: blur(5px);
+      }
+   }
+   @media (min-width: 769px) {
+      // flex: 1 1 auto; //Растягиваем на всю возможную ширину
+      justify-content: flex-end;
+      position: relative;
+      z-index: 2;
+   }
+   &__wrapper {
+      @media (max-width: 768px) {
+         background-color: $light;
+         margin-top: 20px;
+         margin-bottom: 20px;
+         padding-bottom: 20px;
+      }
+      > ul {
+         display: flex;
+         @media (max-width: 768px) {
+            flex-direction: column;
+            row-gap: 10px;
+            align-items: center;
+         }
+         @media (min-width: 769px) {
+            align-items: center;
+            justify-content: space-between; // Раздвигаем элементы меню между собой для резинового увеличения отступа
+            column-gap: 15px; // минимальный отступ между элементами меню
+         }
+         > li {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            &:hover {
+               @media (min-width: 769px) {
+                  a {
+                     &:after {
+                        width: 100%;
+                     }
+                  }
+               }
+            }
+            > a {
+               padding-top: 5px;
+               padding-bottom: 5px;
+            }
+         }
+      }
+   }
+}
+.header-menu-accordion {
+   &.opened {
+      .header-menu-accordion {
+         z-index: 5;
+         &__icon {
+            transform: rotate(180deg);
+         }
+      }
+   }
+   // .header-menu-accordion__preview
+
+   &__preview {
+      cursor: pointer; // ! Либо писать в стилях - либо есть готовая функция в джсе (но лучше стилях)
+      position: relative;
+      display: flex;
+      align-items: center;
+      column-gap: 4px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      path {
+         transition: fill 0.3s ease;
+         fill: $dark;
+      }
+   }
+
+   // .header-menu-accordion__title
+
+   &__title {
+   }
+
+   // .header-menu-accordion__icon
+
+   &__icon {
+      transition: all 0.3s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+   }
+
+   &[data-spoiler-absolute],
+   &[data-accordion-absolute] {
+      position: relative;
+      max-width: max-content;
+      .header-menu-accordion {
+         transition: all 0.3s ease;
+         // .header-menu-accordion__wrapper
+         &__wrapper {
+            position: absolute;
+            z-index: 1;
+            top: calc(100% + 6px);
+            right: 0;
+            height: 0; // ! Либо писать в стилях - либо есть готовая функция в джсе (но лучше стилях)
+            overflow: hidden; // ! Либо писать в стилях - либо есть готовая функция в джсе (но лучше стилях)
+            transition: all 0.5s ease; // ! Либо писать в стилях - либо есть готовая функция в джсе (но лучше стилях)
+            box-shadow: 0 0 3px $dark;
+            border-radius: 5px;
+         }
+
+         // .header-menu-accordion__body
+         &__body {
+            white-space: nowrap;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            column-gap: 12px;
+            padding: 8px 12px;
+            svg {
+               width: 30px;
+               height: auto;
+            }
+            a {
+               display: flex;
+               justify-content: center;
+               align-items: center;
+            }
+            &_social {
+               a {
+                  transition: transform 0.3s ease;
+                  &:hover {
+                     transform: scale(1.1);
+                  }
+               }
+            }
+            &_contacts {
+               flex-direction: column;
+               row-gap: 4px;
+               a {
+                  transition: color 0.3s ease;
+                  &:hover {
+                     color: $orange;
+                  }
+               }
+            }
+         }
+      }
+   }
+}
+
+.burger {
+   position: relative;
+   z-index: 2;
+   min-height: 40px; // Высота блока для удобства нажатия на иконку
+   width: 40px; // Ширина блока для удобства нажатия на иконку
+   // ? Двигаем на половину от разницы между width для .burger и width для .burger__wrapper что бы .burger прилип к контейнеру
+   margin-left: -5px;
+   // ? Двигаем на половину от разницы между width для .burger и width для .burger__wrapper что бы .burger прилип к контейнеру
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   transition: all 0.3s ease;
+   cursor: pointer;
+   &:hover {
+      transform: scale(1.2);
+   }
+   @media (min-width: 769px) {
+      display: none;
+   }
+   // todo Если нужно изменить цвет бургера при наведении
+   &:hover .burger__wrapper {
+      span,
+      &:before,
+      &:after {
+         background-color: orange;
+      }
+   }
+   &__wrapper {
+      width: 30px; // todo Макетная ширина бургера
+      height: 20px; // todo Макетная высота бургера
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      span,
+      &:before,
+      &:after {
+         width: 100%;
+         height: 2px;
+         background-color: #000;
+         transition: all 0.3s ease;
+         transform: translateY(0);
+         position: relative;
+         left: 0;
+      }
+      &:before {
+         content: "";
+         animation: burgerTopDisabled 0.7s ease 0s 1;
+         animation-fill-mode: forwards;
+      }
+      &:after {
+         content: "";
+         animation: burgerBottomDisabled 0.7s ease 0s 1;
+         animation-fill-mode: forwards;
+      }
+      span {
+         top: 50%;
+         transform: translateY(-150%);
+         // transition: background-color 0.3s ease, transform 0.3s ease 0.35s; //! Interesting effect (on desktop)
+         transition: background-color 0.3s ease, transform 0.3s ease 0s;
+      }
+
+      @keyframes burgerTopDisabled {
+         // Closing burger animation
+         0% {
+            top: 50%;
+            transform: translateY(-50%) rotate(-45deg);
+         }
+         50% {
+            top: 50%;
+            transform: translateY(-50%);
+         }
+         100% {
+            top: 0;
+            transform: translateY(0);
+         }
+      }
+      @keyframes burgerBottomDisabled {
+         // Closing burger animation
+         0% {
+            top: 50%;
+            transform: translateY(-250%) rotate(45deg);
+         }
+         50% {
+            top: 50%;
+            transform: translateY(-250%);
+         }
+         100% {
+            top: 100%;
+            transform: translateY(-300%);
+         }
+      }
+   }
+   &.active {
+      // Opening burger animation
+      .burger__wrapper {
+         span,
+         &:before,
+         &:after {
+            background-color: orange;
+         }
+         &:before {
+            animation: burgerTopActive 0.7s ease 0s 1;
+            animation-fill-mode: forwards;
+         }
+         span {
+            transform: translateY(-150%) scale(0);
+            // transition: background-color 0.3s ease, transform 0.3s ease 0s; //! Interesting effect (on desktop)
+            transition: background-color 0.3s ease, transform 0.3s ease 0.3s;
+         }
+         &:after {
+            animation: burgerBottomActive 0.7s ease 0s 1;
+            animation-fill-mode: forwards;
+         }
+         @keyframes burgerTopActive {
+            0% {
+               top: 0;
+               transform: translateY(0);
+            }
+            50% {
+               top: 50%;
+               transform: translateY(-50%);
+            }
+            100% {
+               top: 50%;
+               transform: translateY(-50%) rotate(-45deg);
+            }
+         }
+         @keyframes burgerBottomActive {
+            0% {
+               top: 100%;
+               transform: translateY(-300%);
+            }
+            50% {
+               top: 50%;
+               transform: translateY(-250%);
+            }
+            100% {
+               top: 50%;
+               transform: translateY(-250%) rotate(45deg);
+            }
+         }
+      }
+   }
+}
+[data-cart] {
+   transition: all 0.3s ease;
+   &:hover {
+      transform: scale(1.2);
+
+      path {
+         fill: $orange;
+      }
+   }
+   span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+   }
+   svg {
+      width: 20px;
+      height: auto;
+   }
+   path {
+      transition: fill 0.3s ease;
+   }
+}
