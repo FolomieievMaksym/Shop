@@ -9,6 +9,38 @@
    &:hover {
       opacity: 1 !important;
    }
+   &.home {
+      &:before {
+         background-color: transparent;
+      }
+      .header-menu {
+         &__item {
+            > :first-child {
+               @media (min-width: 769px) {
+                  color: $light;
+                  path {
+                     fill: $light;
+                  }
+               }
+            }
+         }
+      }
+      .burger {
+         &__wrapper {
+            &:before,
+            &:after,
+            span {
+               background-color: $light;
+            }
+         }
+      }
+   }
+   &.line {
+      &:after {
+         opacity: 1;
+         height: 2px;
+      }
+   }
    &:before {
       // Накрывает менюшки с position: fixed
       content: "";
@@ -19,6 +51,20 @@
       height: 100%;
       background-color: $light; // todo Изменить на нужный цвет подложки
       z-index: 1;
+      transition: background-color 0.3s ease;
+   }
+   &:after {
+      // Накрывает менюшки с position: fixed
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 0px;
+      opacity: 0;
+      background-color: $orange; // todo Изменить на нужный цвет подложки
+      z-index: 2;
+      transition: height 0.3s ease, opacity 0.3s ease;
    }
    &__container {
       @extend %container;
@@ -37,27 +83,23 @@
    }
    &__logo {
       z-index: 2;
-      @include fl(30);
-      transition: all 0.3s ease;
-      &:hover {
-         transform: scale(1.1);
-      }
    }
 }
 
 .header-menu {
    @media (max-width: 768px) {
+      overflow: auto;
       position: fixed;
-      top: -100vh;
-      left: 0;
+      top: 0;
+      left: 100vw;
       width: 100vw;
       height: 100vh;
       background-color: rgba(0, 0, 0, 0);
       backdrop-filter: blur(0px);
-      transition: top 0.8s ease 0.3s, background-color 0.3s ease 0s, backdrop-filter 0.3s ease 0s;
+      transition: left 0.8s ease 0.3s, background-color 0.3s ease 0s, backdrop-filter 0.3s ease 0s;
       &.active {
-         top: 0;
-         transition: top 0.8s ease 0s, background-color 0.5s ease 0.8s, backdrop-filter 0.5s ease 0.8s;
+         left: 0;
+         transition: left 0.8s ease 0s, background-color 0.5s ease 0.8s, backdrop-filter 0.5s ease 0.8s;
          background-color: rgba(0, 0, 0, 0.8);
          backdrop-filter: blur(5px);
       }
@@ -71,7 +113,7 @@
    &__wrapper {
       @media (max-width: 768px) {
          background-color: $light;
-         margin-top: 20px;
+         // margin-top: 20px;
          margin-bottom: 20px;
          padding-bottom: 20px;
       }
@@ -112,6 +154,15 @@
          transition: all 0.3s ease;
          font-weight: 700;
          font-family: $ff2;
+         @media (max-width: 768px) {
+            font-size: 1.5em;
+         }
+         @media (min-width: 769px) {
+            color: $dark;
+            path {
+               fill: $dark;
+            }
+         }
       }
       &:hover {
          > :first-child {
@@ -174,12 +225,18 @@
             position: absolute;
             z-index: 1;
             top: 100%;
-            right: 0;
             height: 0; // ! Либо писать в стилях - либо есть готовая функция в джсе (но лучше стилях)
             overflow: hidden; // ! Либо писать в стилях - либо есть готовая функция в джсе (но лучше стилях)
             transition: all 0.5s ease; // ! Либо писать в стилях - либо есть готовая функция в джсе (но лучше стилях)
             box-shadow: 0 0 3px $dark;
             border-radius: 5px;
+            @media (max-width: 768px) {
+               left: 50%;
+               transform: translateX(calc(-50% - 4px));
+            }
+            @media (min-width: 769px) {
+               right: 0;
+            }
          }
 
          // .header-menu-accordion__body
@@ -191,7 +248,12 @@
             column-gap: 12px;
             padding: 8px 12px;
             svg {
-               width: 30px;
+               @media (max-width: 768px) {
+                  width: 40px;
+               }
+               @media (min-width: 769px) {
+                  width: 30px;
+               }
                height: auto;
             }
             a {
@@ -211,7 +273,13 @@
                flex-direction: column;
                row-gap: 4px;
                a {
+                  display: inline-block;
+                  padding-top: 3px;
+                  padding-bottom: 3px;
                   transition: color 0.3s ease;
+                  @media (max-width: 768px) {
+                     font-size: 1.3em;
+                  }
                   &:hover {
                      color: $orange;
                   }
@@ -258,25 +326,31 @@
       span,
       &:before,
       &:after {
-         width: 100%;
-         height: 2px;
-         background-color: #000;
+         // width: 100%;
+         height: 3px;
+         border-radius: 2px;
+         background-color: $dark;
          transition: all 0.3s ease;
          transform: translateY(0);
          position: relative;
-         left: 0;
       }
       &:before {
+         left: 0;
+         width: 40%;
          content: "";
          animation: burgerTopDisabled 0.7s ease 0s 1;
          animation-fill-mode: forwards;
       }
       &:after {
+         left: 60%;
+         width: 40%;
          content: "";
          animation: burgerBottomDisabled 0.7s ease 0s 1;
          animation-fill-mode: forwards;
       }
       span {
+         left: 0;
+         width: 100%;
          top: 50%;
          transform: translateY(-150%);
          // transition: background-color 0.3s ease, transform 0.3s ease 0.35s; //! Interesting effect (on desktop)
@@ -286,6 +360,7 @@
       @keyframes burgerTopDisabled {
          // Closing burger animation
          0% {
+            width: 100%;
             top: 50%;
             transform: translateY(-50%) rotate(-45deg);
          }
@@ -296,11 +371,14 @@
          100% {
             top: 0;
             transform: translateY(0);
+            width: 40%;
          }
       }
       @keyframes burgerBottomDisabled {
          // Closing burger animation
          0% {
+            left: 0;
+            width: 100%;
             top: 50%;
             transform: translateY(-250%) rotate(45deg);
          }
@@ -311,6 +389,8 @@
          100% {
             top: 100%;
             transform: translateY(-300%);
+            width: 40%;
+            left: 60%;
          }
       }
    }
@@ -337,6 +417,7 @@
          }
          @keyframes burgerTopActive {
             0% {
+               width: 40%;
                top: 0;
                transform: translateY(0);
             }
@@ -347,10 +428,13 @@
             100% {
                top: 50%;
                transform: translateY(-50%) rotate(-45deg);
+               width: 100%;
             }
          }
          @keyframes burgerBottomActive {
             0% {
+               width: 40%;
+               left: 60%;
                top: 100%;
                transform: translateY(-300%);
             }
@@ -361,6 +445,8 @@
             100% {
                top: 50%;
                transform: translateY(-250%) rotate(45deg);
+               width: 100%;
+               left: 0;
             }
          }
       }
@@ -381,7 +467,12 @@
       align-items: center;
    }
    svg {
-      width: 20px;
+      @media (max-width: 768px) {
+         width: 35px;
+      }
+      @media (min-width: 769px) {
+         width: 20px;
+      }
       height: auto;
    }
    path {
@@ -389,6 +480,10 @@
    }
 }
 [data-to-hide] {
+   position: fixed;
+   bottom: 0;
+   left: 0;
+   width: 100%;
    p {
       padding-top: 8px;
       padding-bottom: 8px;
@@ -397,7 +492,7 @@
       z-index: 2;
       background-color: $orange;
       text-align: center;
-      color: $dark;
+      color: $light;
       font-weight: 200;
       @media (max-width: 768px) {
          font-size: 0.8em;
