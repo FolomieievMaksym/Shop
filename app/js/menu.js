@@ -80,7 +80,12 @@ function changeHeader() {
    }
    if (window.scrollY <= 5) {
       header.classList.remove("line");
+      header.classList.remove("before");
+   } else if (window.scrollY >= 5 && window.scrollY <= viewportHeight - header.scrollHeight) {
+      header.classList.add("before");
+      header.classList.add("line");
    } else {
       header.classList.add("line");
+      header.classList.remove("before");
    }
 }
