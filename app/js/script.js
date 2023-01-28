@@ -15,6 +15,7 @@ import {} from "./menu.js";
 // import {} from "./spoiler-absolute.js";
 // import {} from "./accordion.js";
 import {} from "./accordion-absolute.js";
+// import {} from "./drop-down.js";
 // import {} from "./animate.js";
 // import {} from "./pop-up-video.js";
 // import {} from "./pop-up.js";

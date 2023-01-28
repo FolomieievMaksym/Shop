@@ -1,8 +1,26 @@
-body.home {
-   .hero {
-      &__container {
-         padding-top: 30px;
-         @extend %container;
+.hero {
+   position: relative;
+   width: 100vw;
+   height: 100vh;
+   &__bg {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+
+      img {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+         object-position: center;
       }
+   }
+   &__container {
+      padding-top: 30px;
+      @extend %container;
    }
 }

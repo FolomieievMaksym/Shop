@@ -43,7 +43,12 @@ headerToHide.forEach((el) => {
 });
 
 window.addEventListener("scroll", hideHeaderPart);
-hideHeaderPart();
+headerToHide.forEach((el) => {
+   el.style.height = el.scrollHeight + "px";
+});
+setTimeout(() => {
+   hideHeaderPart();
+}, 3000);
 function hideHeaderPart() {
    if (window.pageYOffset > header.scrollHeight / 2) {
       headerToHide.forEach((el) => {
@@ -59,7 +64,7 @@ function hideHeaderPart() {
 }
 
 // ! <main></main>
-document.querySelector("main").style.paddingTop = header.scrollHeight + "px";
+// document.querySelector("main").style.paddingTop = header.scrollHeight + "px";
 if (window.innerWidth < 769) {
    // menu.firstElementChild.style.paddingTop = header.scrollHeight + "px";
 }
