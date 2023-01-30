@@ -829,8 +829,8 @@ picture {
 .form__input_user-info input:-webkit-autofill,
 .form__input_user-info input:-webkit-autofill:hover,
 .form__input_user-info input:-webkit-autofill:focus {
-  -webkit-transition: background-color 9999s ease-in-out 0s;
-  transition: background-color 9999s ease-in-out 0s;
+  -webkit-transition: background-color 9998s ease-in-out 0s;
+  transition: background-color 9998s ease-in-out 0s;
 }
 
 .form__input_delivery-wrapper {
