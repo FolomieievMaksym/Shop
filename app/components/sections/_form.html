@@ -1,0 +1,38 @@
+<section class="form">
+	<form class="form__container" action="#" method="post">
+		<div class="form__input form__input_name form__input_user-info">
+			<!-- <label for="name">Name</label> -->
+			<input type="text" id="name" name="name" placeholder="Введіть Ваше Ім'я" required>
+		</div>
+		<div class="form__input form__input_phone form__input_user-info">
+			<!-- <label for="phone">Phone</label> -->
+			<input type="tel" id="phone" name="phone" placeholder="Введіть Ваш Телефон" required>
+		</div>
+		<div class="form__input  form__input_email form__input_user-info">
+			<!-- <label for="email">Email</label> -->
+			<input type="email" id="email" name="email" placeholder="Введіть Ваш Email" required>
+		</div>
+		<div class="form__input_delivery-wrapper">
+			<!-- ! Select'ам когда: value != city/warehouse менять opacity на 1 -->
+			<div class="form__input form__input_city form__input_delivery">
+				<select name="city" required>
+					<option value="city" selected disabled>Виберіть місто</option>
+					<option value="value1">Місто #1</option>
+					<option value="value2">Місто #2</option>
+					<option value="value3">Місто #3</option>
+				</select>
+			</div>
+			<div class="form__input form__input_warehouse form__input_delivery">
+				<select name="warehouse" required>
+					<option value="warehouse" selected disabled>Виберіть відділення</option>
+					<option value="value1">Відділення #1</option>
+					<option value="value2">Відділення #2</option>
+					<option value="value3">Відділення #3</option>
+				</select>
+			</div>
+		</div>
+		<div class="form__input form__input_submit">
+			<button type="submit">Замовити</button>
+		</div>
+	</form>
+</section>

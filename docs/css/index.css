@@ -117,6 +117,7 @@ input[type=submit],
 }
 
 .hero__container,
+.form__container,
 .footer__container,
 [data-to-hide] p,
 .header__container {
@@ -785,6 +786,116 @@ picture {
   background-color: rgb(0, 0, 0);
 }
 
+.form {
+  max-width: 500px;
+}
+
+.form__container {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: grid;
+  grid-auto-rows: 1fr;
+  row-gap: 16px;
+}
+
+.form__input * {
+  text-align: center;
+}
+
+.form__input input {
+  width: 100%;
+  caret-color: #eb5f33;
+}
+
+.form__input input::-moz-placeholder {
+  opacity: 0.7;
+}
+
+.form__input input::placeholder {
+  opacity: 0.7;
+}
+
+.form__input_user-info input {
+  border-top: 2px solid #eb5f33;
+  border-bottom: 2px solid #eb5f33;
+  padding: 12px 16px;
+  border-radius: 8px;
+}
+
+.form__input_user-info input:focus {
+  border-color: rgb(0, 255, 81);
+}
+
+.form__input_user-info input:-webkit-autofill,
+.form__input_user-info input:-webkit-autofill:hover,
+.form__input_user-info input:-webkit-autofill:focus {
+  -webkit-transition: background-color 9999s ease-in-out 0s;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+.form__input_delivery-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  align-items: center;
+  -moz-column-gap: 20px;
+  column-gap: 20px;
+  row-gap: 16px;
+}
+
+.form__input_delivery {
+  height: 100%;
+  position: relative;
+}
+
+.form__input_delivery select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  border: none;
+  border-top: 2px solid #eb5f33;
+  border-bottom: 2px solid #eb5f33;
+  padding: 12px 16px;
+  border-radius: 8px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0.7;
+}
+
+.form__input_delivery select:focus {
+  outline: none;
+  border-color: rgb(0, 255, 81);
+}
+
+.form__input_delivery select,
+.form__input_delivery option {
+  font-family: inherit;
+  color: inherit;
+  font-size: inherit;
+}
+
+.form__input_submit {
+  text-align: center;
+}
+
+.form__input_submit button {
+  padding: 12px 20px;
+  border-radius: 8px;
+  border-left: 2px solid #eb5f33;
+  border-right: 2px solid #eb5f33;
+  font-family: inherit;
+  font-size: inherit;
+  color: #eb5f33;
+}
+
+.form__input_submit button:focus {
+  border-color: rgb(0, 255, 81);
+  outline: none;
+}
+
 .hero {
   position: relative;
   width: 100vw;
@@ -863,6 +974,7 @@ picture {
 
 @media (min-width: 769px) {
   .hero__container,
+  .form__container,
   .footer__container,
   [data-to-hide] p,
   .header__container {
@@ -941,6 +1053,7 @@ picture {
 
 @media (min-width: 1200px) {
   .hero__container,
+  .form__container,
   .footer__container,
   [data-to-hide] p,
   .header__container {
@@ -1013,5 +1126,11 @@ picture {
 
   [data-to-hide] p {
     font-size: 0.8em;
+  }
+}
+
+@media (max-width: 463px) {
+  .form__input_delivery-wrapper {
+    grid-row: span 2;
   }
 }
