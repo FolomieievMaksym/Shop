@@ -313,14 +313,6 @@ picture {
   background-color: transparent;
 }
 
-.header.home .header-menu__item:hover > :first-child {
-  color: #eb5f33;
-}
-
-.header.home .header-menu__item:hover > :first-child path {
-  fill: #eb5f33;
-}
-
 .header.home .burger__wrapper:before,
 .header.home .burger__wrapper:after,
 .header.home .burger__wrapper span {
@@ -403,14 +395,6 @@ picture {
   transition: all 0.3s ease;
   font-weight: 700;
   font-family: "Raleway", sans-serif;
-}
-
-.header-menu__item:hover > :first-child {
-  color: #eb5f33;
-}
-
-.header-menu__item:hover > :first-child path {
-  fill: #eb5f33;
 }
 
 .header-menu-accordion.opened .header-menu-accordion {
@@ -497,11 +481,6 @@ picture {
   transition: transform 0.3s ease;
 }
 
-.header-menu-accordion[drop-down] .header-menu-accordion__body_social a:hover,
-.header-menu-accordion [data-accordion-absolute] .header-menu-accordion__body_social a:hover {
-  transform: scale(1.1);
-}
-
 .header-menu-accordion[drop-down] .header-menu-accordion__body_contacts,
 .header-menu-accordion [data-accordion-absolute] .header-menu-accordion__body_contacts {
   flex-direction: column;
@@ -516,11 +495,6 @@ picture {
   transition: color 0.3s ease;
 }
 
-.header-menu-accordion[drop-down] .header-menu-accordion__body_contacts a:hover,
-.header-menu-accordion [data-accordion-absolute] .header-menu-accordion__body_contacts a:hover {
-  color: #eb5f33;
-}
-
 .burger {
   position: relative;
   z-index: 2;
@@ -532,10 +506,6 @@ picture {
   justify-content: center;
   transition: all 0.3s ease;
   cursor: pointer;
-}
-
-.burger:hover {
-  transform: scale(1.2);
 }
 
 .burger:hover .burger__wrapper span,
@@ -692,14 +662,6 @@ picture {
   transition: all 0.3s ease;
 }
 
-[data-cart]:hover {
-  transform: scale(1.2);
-}
-
-[data-cart]:hover path {
-  fill: #eb5f33;
-}
-
 [data-cart] span {
   display: flex;
   justify-content: center;
@@ -784,6 +746,216 @@ picture {
 .btn.modify {
   color: rgb(255, 0, 0);
   background-color: rgb(0, 0, 0);
+}
+
+.cart {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  width: 100vw;
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease 0s, z-index 0s ease 0.5s;
+}
+
+.cart.active {
+  z-index: 20;
+  opacity: 1;
+  pointer-events: all;
+  transition: opacity 0.5s ease 0s, z-index 0s ease 0s;
+}
+
+.cart__wrapper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  max-width: 500px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.cart__body {
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: #fff;
+  border-radius: 20px 0 0 20px;
+  height: 100%;
+  position: relative;
+}
+
+.cart__close-icon-wrapper {
+  position: absolute;
+  z-index: 1;
+  top: 5px;
+  right: 5px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transform: translate(8px, -8px);
+  transition: transform 0.3s ease;
+}
+
+.cart__close-icon-wrapper:hover {
+  transform: translate(8px, -8px) scale(1.35);
+}
+
+.cart__close-icon {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.cart__close-icon:after,
+.cart__close-icon:before {
+  content: "";
+  display: inline-block;
+  width: 100%;
+  height: 2px;
+  background-color: #000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 1px;
+}
+
+.cart__close-icon:after {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.cart__close-icon:before {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.cart__title {
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+  font-size: 1.5em;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.cart__content {
+  display: grid;
+  row-gap: 16px;
+  margin-bottom: 12px;
+}
+
+.item-cart__body {
+  border-bottom: 1px solid rgb(15, 15, 15);
+  border-top: 1px solid rgb(15, 15, 15);
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  -moz-column-gap: 12px;
+  column-gap: 12px;
+}
+
+.item-cart__photo {
+  flex: 0 0 80px;
+  width: 80px;
+  height: 80px;
+  position: relative;
+}
+
+.item-cart__photo img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -o-object-position: center;
+  object-position: center;
+  border-radius: 10px;
+}
+
+.item-cart__name {
+  font-weight: 500;
+  font-size: 1.1em;
+  margin-bottom: 12px;
+}
+
+.item-cart__action {
+  display: flex;
+  align-items: center;
+  -moz-column-gap: 20px;
+  column-gap: 20px;
+  justify-content: space-between;
+}
+
+.item-cart__amount {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  -moz-column-gap: 4px;
+  column-gap: 4px;
+}
+
+.item-cart__remove,
+.item-cart__add {
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgb(15, 15, 15);
+  border-radius: 4px;
+  box-shadow: 0 0 1px rgb(15, 15, 15);
+  position: relative;
+}
+
+.item-cart__remove span,
+.item-cart__add span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(15, 15, 15);
+}
+
+.item-cart__num {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  font-size: 1.5em;
+  line-height: 1;
+}
+
+.item-cart__remove span {
+  width: 16px;
+  height: 2px;
+}
+
+.item-cart__add span:first-child {
+  width: 16px;
+  height: 2px;
+}
+
+.item-cart__add span:last-child {
+  width: 2px;
+  height: 16px;
+}
+
+.item-cart__delete span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+}
+
+.item-cart__delete svg {
+  width: 100%;
+  height: auto;
 }
 
 .form {
@@ -1008,10 +1180,6 @@ picture {
     column-gap: 15px;
   }
 
-  .header-menu__wrapper > ul > li:hover a:after {
-    width: 100%;
-  }
-
   .header-menu__item > :first-child {
     color: rgb(15, 15, 15);
   }
@@ -1040,6 +1208,10 @@ picture {
 
   [data-to-hide] p {
     font-size: 1.5em;
+  }
+
+  .cart__body {
+    padding: 24px;
   }
 
   .hero__body {
@@ -1126,6 +1298,10 @@ picture {
 
   [data-to-hide] p {
     font-size: 0.8em;
+  }
+
+  .cart__body {
+    padding: 12px;
   }
 }
 

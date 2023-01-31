@@ -15,14 +15,14 @@
       }
       .header-menu {
          &__item {
-            &:hover {
-               > :first-child {
-                  color: $orange;
-                  path {
-                     fill: $orange;
-                  }
-               }
-            }
+            // &:hover {
+            //    > :first-child {
+            //       color: $orange;
+            //       path {
+            //          fill: $orange;
+            //       }
+            //    }
+            // }
             > :first-child {
                @media (min-width: 769px) {
                   color: $light;
@@ -150,15 +150,15 @@
          > li {
             cursor: pointer;
             transition: all 0.3s ease;
-            &:hover {
-               @media (min-width: 769px) {
-                  a {
-                     &:after {
-                        width: 100%;
-                     }
-                  }
-               }
-            }
+            // &:hover {
+            //    @media (min-width: 769px) {
+            //       a {
+            //          &:after {
+            //             width: 100%;
+            //          }
+            //       }
+            //    }
+            // }
             > a {
                padding-top: 7px;
                padding-bottom: 7px;
@@ -182,14 +182,14 @@
             }
          }
       }
-      &:hover {
-         > :first-child {
-            color: $orange;
-            path {
-               fill: $orange;
-            }
-         }
-      }
+      // &:hover {
+      //    > :first-child {
+      //       color: $orange;
+      //       path {
+      //          fill: $orange;
+      //       }
+      //    }
+      // }
    }
 }
 .header-menu-accordion {
@@ -282,9 +282,9 @@
             &_social {
                a {
                   transition: transform 0.3s ease;
-                  &:hover {
-                     transform: scale(1.1);
-                  }
+                  // &:hover {
+                  //    transform: scale(1.1);
+                  // }
                }
             }
             &_contacts {
@@ -298,9 +298,9 @@
                   @media (max-width: 768px) {
                      font-size: 1.3em;
                   }
-                  &:hover {
-                     color: $orange;
-                  }
+                  // &:hover {
+                  //    color: $orange;
+                  // }
                }
             }
          }
@@ -321,9 +321,9 @@
    justify-content: center;
    transition: all 0.3s ease;
    cursor: pointer;
-   &:hover {
-      transform: scale(1.2);
-   }
+   // &:hover {
+   //    transform: scale(1.2);
+   // }
    @media (min-width: 769px) {
       display: none;
    }
@@ -472,13 +472,13 @@
 }
 [data-cart] {
    transition: all 0.3s ease;
-   &:hover {
-      transform: scale(1.2);
+   // &:hover {
+   //    transform: scale(1.2);
 
-      path {
-         fill: $orange;
-      }
-   }
+   //    path {
+   //       fill: $orange;
+   //    }
+   // }
    span {
       display: flex;
       justify-content: center;

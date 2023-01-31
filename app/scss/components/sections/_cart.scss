@@ -1,0 +1,245 @@
+.cart {
+   &.active {
+      z-index: 20;
+      opacity: 1;
+      pointer-events: all;
+      transition: opacity 0.5s ease 0s, z-index 0s ease 0s;
+   }
+   position: fixed;
+   top: 0;
+   right: 0;
+   background-color: rgba(0, 0, 0, 0.9);
+   width: 100vw;
+   width: 100%;
+   height: 100vh;
+   z-index: 0;
+   pointer-events: none;
+   opacity: 0;
+   transition: opacity 0.5s ease 0s, z-index 0s ease 0.5s;
+
+   // cart__wrapper
+   &__wrapper {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      max-width: 500px;
+      height: 100%;
+      overflow-y: auto;
+   }
+
+   // cart__body
+   &__body {
+      // max-height: 100%; // ! Если надо что бы поп ап не выходил за рамки wrapper'а
+      overflow-y: auto;
+      overflow-x: hidden;
+      background-color: #fff;
+      @media (max-width: 768px) {
+         padding: 12px;
+      }
+      @media (min-width: 769px) {
+         padding: 24px;
+      }
+      border-radius: 20px 0 0 20px;
+      height: 100%;
+      position: relative;
+   }
+
+   // cart__close-icon-wrapper
+   &__close-icon-wrapper {
+      position: absolute;
+      z-index: 1;
+      top: 5px;
+      right: 5px;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transform: translate(8px, -8px);
+      transition: transform 0.3s ease;
+      &:hover {
+         transform: translate(8px, -8px) scale(1.35);
+      }
+   }
+   // cart__close-icon
+   &__close-icon {
+      position: relative;
+      width: 24px;
+      height: 24px;
+      &:after,
+      &:before {
+         content: "";
+         display: inline-block;
+         width: 100%;
+         height: 2px;
+         background-color: #000;
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         border-radius: 1px;
+      }
+      &:after {
+         transform: translate(-50%, -50%) rotate(45deg);
+      }
+      &:before {
+         transform: translate(-50%, -50%) rotate(-45deg);
+      }
+   }
+   // .cart__container
+
+   &__container {
+   }
+
+   // .cart__title
+
+   &__title {
+      font-family: $ff2;
+      font-weight: 700;
+      font-size: 1.5em;
+      text-align: center;
+      margin-bottom: 20px;
+   }
+
+   // .cart__content
+
+   &__content {
+      display: grid;
+      row-gap: 16px;
+      margin-bottom: 12px;
+   }
+}
+.item-cart {
+   // .item-cart__body
+
+   &__body {
+      border-bottom: 1px solid $dark;
+      border-top: 1px solid $dark;
+      border-radius: 10px;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      column-gap: 12px;
+   }
+
+   // .item-cart__photo
+
+   &__photo {
+      flex: 0 0 80px;
+      width: 80px;
+      height: 80px;
+      position: relative;
+      img {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+         object-position: center;
+         border-radius: 10px;
+      }
+   }
+
+   // .item-cart__about
+
+   &__about {
+   }
+
+   // .item-cart__name
+
+   &__name {
+      font-weight: 500;
+      font-size: 1.1em;
+      margin-bottom: 12px;
+   }
+
+   // .item-cart__action
+
+   &__action {
+      display: flex;
+      align-items: center;
+      column-gap: 20px;
+      justify-content: space-between;
+   }
+
+   // .item-cart__amount
+
+   &__amount {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      align-items: center;
+      column-gap: 4px;
+   }
+
+   // .item-cart__remove
+
+   &__remove,
+   &__add {
+      width: 30px;
+      height: 30px;
+      border: 1px solid $dark;
+      border-radius: 4px;
+      box-shadow: 0 0 1px $dark;
+      position: relative;
+      span {
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         background-color: $dark;
+      }
+   }
+
+   // .item-cart__num
+
+   &__num {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 500;
+      font-size: 1.5em;
+      line-height: 1;
+   }
+
+   &__remove {
+      span {
+         width: 16px;
+         height: 2px;
+      }
+   }
+
+   // .item-cart__add
+
+   &__add {
+      span {
+         &:first-child {
+            width: 16px;
+            height: 2px;
+         }
+         &:last-child {
+            width: 2px;
+            height: 16px;
+            // transform: translate(-50%, -50%) rotate(90deg);
+         }
+      }
+   }
+
+   // .item-cart__delete
+
+   &__delete {
+      span {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         width: 32px;
+      }
+      svg {
+         width: 100%;
+         height: auto;
+      }
+   }
+}
